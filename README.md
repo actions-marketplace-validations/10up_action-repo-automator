@@ -1,8 +1,8 @@
-# PR Automator - GitHub Action
+# Repo Automator - GitHub Action
 
-> GitHub Action that automates some common PR operations like validating PR description, changelog and credits.
+> GitHub Action that automates some common repository operations like validating PR description, changelog and credits.
 
-[![Support Level](https://img.shields.io/badge/support-beta-blueviolet.svg)](#support-level) [![Release Version](https://img.shields.io/github/release/10up/action-pr-automator.svg)](https://github.com/10up/action-pr-automator/releases/latest) [![License](https://img.shields.io/github/license/10up/action-pr-automator.svg)](https://github.com/10up/action-pr-automator/blob/develop/LICENSE.md) [![CodeQL](https://github.com/10up/action-pr-automator/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/10up/action-pr-automator/actions/workflows/codeql-analysis.yml)
+[![Support Level](https://img.shields.io/badge/support-beta-blueviolet.svg)](#support-level) [![Release Version](https://img.shields.io/github/release/10up/action-repo-automator.svg)](https://github.com/10up/action-repo-automator/releases/latest) [![License](https://img.shields.io/github/license/10up/action-repo-automator.svg)](https://github.com/10up/action-repo-automator/blob/develop/LICENSE.md) [![CodeQL](https://github.com/10up/action-repo-automator/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/10up/action-repo-automator/actions/workflows/codeql-analysis.yml)
 
 ## Overview
 
@@ -45,18 +45,18 @@ This GitHub Action Helps with the following operations:
 | comment-ignore-users | - | List of users to ignore for adding comments when the issue or PR is opened by them.  Add prefix `team:` if you want to ignore users from the team. |
 | reviewers | `team:open-source-practice` | List of Reviewers to request PR review after passing all validation checks. Add prefix `team:` if you want to request review from the team.
 | sync-pr-branch | false | Whether to enable automatic synchronization of the pull request branch with the base branch |
-| description-validation | `#\\s*Description of the Change.*\\r?\\n([^#]+)` | A regex pattern for validating the pull request description. Pass `false` to disable description validation |
-| changelog-validation | `#\\s*Changelog.*\\r?\\n([^#]+)` | A regex pattern for validating the pull request changelog entry. Pass `false` to disable changelog validation |
-| credits-validation | `#\\s*Credits.*\\r?\\n([^#]+)` | A regex pattern for validating the props given in pull request. Pass `false` to disable credits validation |
+| validate-description | true | Whether to validate the pull request description. Pass `false` to disable description validation |
+| validate-changelog | true | Whether to validate the pull request changelog entry. Pass `false` to disable changelog validation |
+| validate-credits | true | Whether to validate the props given in pull request. Pass `false` to disable credits validation |
 | wait-ms | `15000` | Time to wait in milliseconds between retries to check PR mergeable status |
 | max-retries | `5` | Maximum number of retries to check PR mergeable status |
 
 ## Example Workflow File
 
-To get started, you will want to copy the contents of the given example into `.github/workflows/pr-automator.yml` and push that to your repository. You are welcome to name the file something else.
+To get started, you will want to copy the contents of the given example into `.github/workflows/repo-automator.yml` and push that to your repository. You are welcome to name the file something else.
 
 ```yml
-name: 'PR Automator'
+name: 'Repo Automator'
 on:
   issues:
     types:
@@ -78,7 +78,7 @@ jobs:
   Validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: 10up/action-pr-automator@trunk
+      - uses: 10up/action-repo-automator@trunk
         with:
           fail-label: 'needs:feedback'
           pass-label: 'needs:code-review'
@@ -126,12 +126,12 @@ __Merge Conflicts__ - Sometimes, GitHub does not reliably compute the [`mergeabl
 
 ## Changelog
 
-A complete listing of all notable changes to PR Automator - GitHub Action are documented in [CHANGELOG.md](https://github.com/10up/action-pr-automator/blob/develop/CHANGELOG.md).
+A complete listing of all notable changes to Repo Automator - GitHub Action are documented in [CHANGELOG.md](https://github.com/10up/action-repo-automator/blob/develop/CHANGELOG.md).
 
 ## Contributing
 
-Please read [CODE_OF_CONDUCT.md](https://github.com/10up/action-pr-automator/blob/develop/CODE_OF_CONDUCT.md) for details on our code of conduct, [CONTRIBUTING.md](https://github.com/10up/action-pr-automator/blob/develop/CONTRIBUTING.md) for details on the process for submitting pull requests to us, and [CREDITS.md](https://github.com/10up/action-pr-automator/blob/develop/CREDITS.md) for a list of maintainers, contributors, and libraries used in this repository.
+Please read [CODE_OF_CONDUCT.md](https://github.com/10up/action-repo-automator/blob/develop/CODE_OF_CONDUCT.md) for details on our code of conduct, [CONTRIBUTING.md](https://github.com/10up/action-repo-automator/blob/develop/CONTRIBUTING.md) for details on the process for submitting pull requests to us, and [CREDITS.md](https://github.com/10up/action-repo-automator/blob/develop/CREDITS.md) for a list of maintainers, contributors, and libraries used in this repository.
 
 ## Like what you see?
 
-<a href="http://10up.com/contact/"><img src="https://10up.com/uploads/2016/10/10up-Github-Banner.png" width="850" alt="Work with us at 10up"></a>
+<a href="http://10up.com/contact/"><img src="https://github.com/10up/.github/blob/trunk/profile/10up-github-banner.jpg" width="850" alt="Work with the 10up WordPress Practice at Fueled"></a>
